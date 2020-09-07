@@ -19,9 +19,12 @@ class _LoadingState extends State<Loading> {
         flag: 'nigeria.jpg',
       );
       await world.getTime();
+      setState(() {
+        time = world.time;
+      });
       Navigator.pushReplacementNamed(context, '/home', arguments: {
         'location': 'Nigeria',
-        'time': world.time,
+        'time': time,
         'flag': 'nigeria.jpg',
       });
     } catch (e) {
@@ -51,7 +54,7 @@ class _LoadingState extends State<Loading> {
       backgroundColor: Colors.blueAccent,
       body: SpinKitWanderingCubes(
         color: Colors.white,
-      size: 50.0,
+        size: 50.0,
       ),
     );
   }
