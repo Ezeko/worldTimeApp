@@ -6,6 +6,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map data;
+  @override
+  void initState() {
+    super.initState();
+    data = ModalRoute.of(context).settings.arguments;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,8 +27,12 @@ class _HomeState extends State<Home> {
                   Navigator.pushNamed(context, '/choose');
                 },
                 icon: Icon(Icons.edit_location),
-                label: Text('Edit location'),
+                label: Text('Choose location'),
               ),
+
+              SizedBox(height: 8.0),
+
+              Text(data['time']),
             ],
           ),
         ),
