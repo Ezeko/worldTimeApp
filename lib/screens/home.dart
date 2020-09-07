@@ -36,8 +36,12 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   SizedBox(height: 8.0),
                   RaisedButton.icon(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/choose');
+                    onPressed: () async {
+                      dynamic result =
+                          await Navigator.pushNamed(context, '/choose');
+                      setState(() {
+                        data = result;
+                      });
                     },
                     icon: Icon(Icons.edit_location),
                     label: Text('Choose location'),

@@ -23,7 +23,7 @@ class _LoadingState extends State<Loading> {
         time = world.time;
       });
       Navigator.pushReplacementNamed(context, '/home', arguments: {
-        'location': 'Nigeria',
+        'location': 'Lagos',
         'time': time,
         'flag': 'nigeria.jpg',
         'isDayTime': world.isDayTime,
