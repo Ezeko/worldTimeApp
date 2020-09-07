@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import './screens/loading.dart';
 import './screens/chooseLocation.dart';

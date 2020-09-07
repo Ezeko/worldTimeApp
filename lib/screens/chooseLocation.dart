@@ -8,8 +8,17 @@ class Location extends StatefulWidget {
 class _LocationState extends State<Location> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Choose Location'),
+      ),
+
+      body: Column(
+        children: <Widget>[
+          Text('Choose Location screen'),
+        ],
+        ),
     );
   }
 }
