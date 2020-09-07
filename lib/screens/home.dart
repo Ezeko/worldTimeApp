@@ -6,7 +6,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Map data;
+  Map data = {};
   String bgImage;
   @override
   void initState() {
@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Map data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
 
     String bgImage = data['isDayTime'] ? 'morning.jpeg' : 'night.jpeg';
     Color bgColor = data['isDayTime'] ? Colors.grey : Colors.grey[900];
@@ -39,9 +39,11 @@ class _HomeState extends State<Home> {
                     onPressed: () async {
                       dynamic result =
                           await Navigator.pushNamed(context, '/choose');
+                      print(result);
                       setState(() {
                         data = result;
                       });
+                      print(data);
                     },
                     icon: Icon(Icons.edit_location),
                     label: Text('Choose location'),

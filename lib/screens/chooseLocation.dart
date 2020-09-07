@@ -10,13 +10,16 @@ class Location extends StatefulWidget {
 class _LocationState extends State<Location> {
   List<WorldTime> locations = [
     WorldTime(location: 'Berlin', url: 'Europe/Berlin', flag: 'germany.jpg'),
-    WorldTime(location: 'China', url: 'Asia/china', flag: 'china.jpg'),
+    WorldTime(location: 'Seoul', url: 'Asia/Seoul', flag: 'china.jpg'),
     WorldTime(location: 'London', url: 'Europe/London', flag: 'gbp.jpg'),
     WorldTime(location: 'Lagos', url: 'Africa/Lagos', flag: 'nigeria.jpg'),
-    WorldTime(location: 'Texas', url: 'America/Texas', flag: 'usa.jpg'),
+    WorldTime(location: 'New York', url: 'America/New_York', flag: 'usa.jpg'),
   ];
   getTimeHere(index) async {
     await locations[index].getTime();
+    //print(locations[index].flag);
+
+    //navigate back to home screen
     Navigator.pop(context, {
       'location': locations[index].location,
       'time': locations[index].time,
