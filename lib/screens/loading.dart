@@ -26,6 +26,7 @@ class _LoadingState extends State<Loading> {
         'location': 'Nigeria',
         'time': time,
         'flag': 'nigeria.jpg',
+        'isDayTime': world.isDayTime,
       });
     } catch (e) {
       if (Platform.isAndroid) {

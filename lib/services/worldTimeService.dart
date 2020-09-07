@@ -7,22 +7,23 @@ class WorldTime {
   String url;
   String time;
   String flag;
+  bool isDayTime;
   WorldTime({this.location, this.url, this.flag});
 
-  Future <void> getTime() async {
-      Response response =
-      await get('http://worldtimeapi.org/api/timezone/Africa/Lagos');
-      Map data = jsonDecode(response.body);
-      DateTime now = DateTime.parse(data['utc_datetime']);
-      String offset = (data['utc_offset']).substring(1, 3);
+  Future<void> getTime() async {
+    Response response =
+        await get('http://worldtimeapi.org/api/timezone/$url');
+    Map data = jsonDecode(response.body);
+    DateTime now = DateTime.parse(data['utc_datetime']);
+    String offset = (data['utc_offset']).substring(1, 3);
 
-      now = now.add(Duration(hours: int.parse(offset)));
-      time = DateFormat.jm().format(now);
-      print(data['utc_datetime']);
-      print(time);
-      
+    now = now.add(Duration(hours: int.parse(offset)));
 
-      //Platform.isAndroid ? print('Android') : print('ios');
-    
+    isDayTime = now.hour > 6 && now.hour < 19 ? true : false;
+    time = DateFormat.jm().format(now);
+    //print(data['utc_datetime']);
+    //print(time);
+
+    //Platform.isAndroid ? print('Android') : print('ios');
   }
 }
