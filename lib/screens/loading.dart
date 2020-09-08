@@ -53,7 +53,13 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      body: SpinKitWanderingCubes(
+      body: /*Center(
+        child: Image(
+          image: AssetImage('images/TickingClock1.gif'),
+        ),
+      )*/
+      
+      SpinKitWanderingCubes(
         color: Colors.white,
         size: 50.0,
       ),
