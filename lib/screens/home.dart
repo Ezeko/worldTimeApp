@@ -39,11 +39,11 @@ class _HomeState extends State<Home> {
                     onPressed: () async {
                       dynamic result =
                           await Navigator.pushNamed(context, '/choose');
-                      print(result);
+                      //print(result);
                       setState(() {
                         data = result;
                       });
-                      print(data);
+                      //print(data);
                     },
                     icon: Icon(Icons.edit_location),
                     label: Text('Choose location'),
@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
                   SizedBox(height: 8.0),
                   CircleAvatar(
                     backgroundImage: AssetImage('images/${data['flag']}'),
-                    radius: 28.0,
+                    radius: 38.0,
                   ),
                   Column(
                     children: <Widget>[
