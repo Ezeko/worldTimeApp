@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:worldTime/services/worldTimeService.dart';
 import '../services/worldTimeService.dart';
@@ -8,8 +10,9 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
+  
   List<WorldTime> locations = [
-    WorldTime(location: 'Abijan', url: 'Africa/Abijan', flag: 'abijan.png'),
+    WorldTime(location: 'Abijan', url: 'Africa/Abidjan', flag: 'abijan.png'),
     WorldTime(location: 'Algiers', url: 'Africa/Algiers', flag: 'algeria.png'),
     WorldTime(location: 'Dubai', url: 'Asia/Dubai', flag: 'dubai.png'),
     WorldTime(location: 'Berlin', url: 'Europe/Berlin', flag: 'germany.jpg'),
@@ -17,10 +20,13 @@ class _LocationState extends State<Location> {
     WorldTime(location: 'Seoul', url: 'Asia/Seoul', flag: 'china.jpg'),
     WorldTime(location: 'London', url: 'Europe/London', flag: 'gbp.jpg'),
     WorldTime(location: 'Lagos', url: 'Africa/Lagos', flag: 'nigeria.jpg'),
-    WorldTime(location: 'Mexico', url: 'America/Mexico_City', flag: 'mexico.png'),
+    WorldTime(
+        location: 'Mexico', url: 'America/Mexico_City', flag: 'mexico.png'),
     WorldTime(location: 'New York', url: 'America/New_York', flag: 'usa.jpg'),
-    WorldTime(location: 'Los Angeles', url: 'America/Los_Angeles', flag: 'usa.jpg'),
-    WorldTime(location: 'Winnipeg', url: 'America/Winnipeg', flag: 'canada.png'),
+    WorldTime(
+        location: 'Los Angeles', url: 'America/Los_Angeles', flag: 'usa.jpg'),
+    WorldTime(
+        location: 'Winnipeg', url: 'America/Winnipeg', flag: 'canada.png'),
   ];
   getTimeHere(index) async {
     await locations[index].getTime();
@@ -35,6 +41,8 @@ class _LocationState extends State<Location> {
     });
   }
 
+  
+   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +51,7 @@ class _LocationState extends State<Location> {
         title: Text('Choose Location'),
       ),
       body: ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemCount: locations.length,
           itemBuilder: (context, index) {
             return Padding(

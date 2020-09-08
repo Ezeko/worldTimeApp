@@ -15,11 +15,16 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    if (data == null) {
+      data = ModalRoute.of(context).settings.arguments;
+    }
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
 
     String bgImage = data['isDayTime'] ? 'morning.jpeg' : 'night.jpeg';
     Color bgColor = data['isDayTime'] ? Colors.grey : Colors.grey[900];
     Color textColor = data['isDayTime'] ? Colors.black : Colors.blueGrey[50];
+    Color iconColor =
+        data['isDayTime'] ? Colors.purple[200] : Colors.purple[700];
     return Scaffold(
       backgroundColor: bgColor,
       body: SafeArea(
@@ -36,6 +41,7 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   SizedBox(height: 8.0),
                   RaisedButton.icon(
+                    color: iconColor,
                     onPressed: () async {
                       dynamic result =
                           await Navigator.pushNamed(context, '/choose');
@@ -45,8 +51,14 @@ class _HomeState extends State<Home> {
                       });
                       //print(data);
                     },
-                    icon: Icon(Icons.edit_location),
-                    label: Text('Choose location'),
+                    icon: Icon(
+                      Icons.edit_location,
+                      color: Colors.deepPurple[50],
+                    ),
+                    label: Text(
+                      'Choose location',
+                      style: TextStyle(color: Colors.deepPurple[50]),
+                    ),
                   ),
                   SizedBox(height: 8.0),
                   CircleAvatar(
