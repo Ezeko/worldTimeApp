@@ -31,11 +31,11 @@ class _HomeState extends State<Home> {
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('images/$bgImage'),
-            fit: BoxFit.cover,
+                image: AssetImage('images/$bgImage'),
+                fit: BoxFit.cover,
           )),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 150.0, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 200.0, 0, 0),
             child: Center(
               child: Column(
                 children: <Widget>[
