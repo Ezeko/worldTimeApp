@@ -95,6 +95,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.8"
+  load:
+    dependency: "direct main"
+    description:
+      name: load
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.6"
   matcher:
     dependency: transitive
     description:

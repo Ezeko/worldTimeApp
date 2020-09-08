@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:load/load.dart';
 import 'package:worldTime/services/worldTimeService.dart';
 import '../services/worldTimeService.dart';
 
@@ -10,7 +12,8 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
-  
+  var loading = false;
+  var loader;
   List<WorldTime> locations = [
     WorldTime(location: 'Abijan', url: 'Africa/Abidjan', flag: 'abijan.png'),
     WorldTime(location: 'Algiers', url: 'Africa/Algiers', flag: 'algeria.png'),
@@ -18,6 +21,7 @@ class _LocationState extends State<Location> {
     WorldTime(location: 'Berlin', url: 'Europe/Berlin', flag: 'germany.jpg'),
     WorldTime(location: 'Cairo', url: 'Africa/Cairo', flag: 'egypt.png'),
     WorldTime(location: 'Seoul', url: 'Asia/Seoul', flag: 'china.jpg'),
+    WorldTime(location: 'Jamaica', url: 'America/Jamaica', flag: 'jamaica.png'),
     WorldTime(location: 'London', url: 'Europe/London', flag: 'gbp.jpg'),
     WorldTime(location: 'Lagos', url: 'Africa/Lagos', flag: 'nigeria.jpg'),
     WorldTime(
@@ -31,7 +35,11 @@ class _LocationState extends State<Location> {
   getTimeHere(index) async {
     await locations[index].getTime();
     //print(locations[index].flag);
-
+    setState(() {
+      loading = false;
+    });
+    
+    loader.dismiss();
     //navigate back to home screen
     Navigator.pop(context, {
       'location': locations[index].location,
@@ -41,8 +49,6 @@ class _LocationState extends State<Location> {
     });
   }
 
-  
-   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,14 +57,25 @@ class _LocationState extends State<Location> {
         title: Text('Choose Location'),
       ),
       body: ListView.builder(
-          physics: BouncingScrollPhysics(),
           itemCount: locations.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
+              padding: const EdgeInsets.fromLTRB(8.0, 6.0, 8.0, 0),
               child: Card(
                 child: ListTile(
-                  onTap: () {
+                  onTap: () async {
+                    setState(() {
+                      loading = true;
+                    });
+
+                    if (loading) {
+                      var dialog = await showLoadingDialog();
+                      setState(() {
+                        loader = dialog;
+                      });
+                    
+                    }
+
                     getTimeHere(index);
                   },
                   title: Text(locations[index].location),
