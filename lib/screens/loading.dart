@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import '../services/worldTimeService.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +28,7 @@ class _LoadingState extends State<Loading> {
         'isDayTime': world.isDayTime,
       });
     } catch (e) {
-      if (Platform.isAndroid) {
+      /*if (Platform.isAndroid) {
         AlertDialog(
           title: Text('Ooops!!'),
         );
@@ -39,7 +38,8 @@ class _LoadingState extends State<Loading> {
           title: Text('Ooops!'),
           content: Text('An error occur, could not find data'),
         );
-      }
+      }*/
+      print('error $e');
     }
   }
 
@@ -53,13 +53,14 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      body: /*Center(
+      body:
+          /*Center(
         child: Image(
           image: AssetImage('images/TickingClock1.gif'),
         ),
       )*/
-      
-      SpinKitWanderingCubes(
+
+          SpinKitWanderingCubes(
         color: Colors.white,
         size: 50.0,
       ),

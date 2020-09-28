@@ -9,8 +9,8 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
-  var loading = false;
-  var loader;
+  bool loading = false;
+  dynamic loader;
   List<WorldTime> locations = [
     WorldTime(location: 'Abijan', url: 'Africa/Abidjan', flag: 'abijan.png'),
     WorldTime(location: 'Algiers', url: 'Africa/Algiers', flag: 'algeria.png'),

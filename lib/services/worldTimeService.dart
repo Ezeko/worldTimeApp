@@ -12,7 +12,7 @@ class WorldTime {
 
   Future<void> getTime() async {
     Response response =
-        await get('http://worldtimeapi.org/api/timezone/$url');
+        await get('https://worldtimeapi.org/api/timezone/$url');
     Map data = jsonDecode(response.body);
     DateTime now = DateTime.parse(data['utc_datetime']);
     String offset = (data['utc_offset']).substring(1, 3);
