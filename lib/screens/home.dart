@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
     Color bgColor = data['isDayTime'] ? Colors.grey : Colors.grey[900];
     Color textColor = data['isDayTime'] ? Colors.black : Colors.blueGrey[50];
     Color iconColor =
-        data['isDayTime'] ? Colors.purple[200] : Colors.purple[700];
+        data['isDayTime'] ? Colors.blue[400] : Colors.blue[800];
     return Scaffold(
       backgroundColor: bgColor,
       body: Container(

@@ -7,6 +7,7 @@ import 'package:load/load.dart';
 void main() {
   runApp(LoadingProvider(
       child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => Loading(),

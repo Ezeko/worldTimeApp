@@ -9,8 +9,8 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
-  bool loading = false;
   dynamic loader;
+  bool loading = false;
   List<WorldTime> locations = [
     WorldTime(location: 'Abijan', url: 'Africa/Abidjan', flag: 'abijan.png'),
     WorldTime(location: 'Algiers', url: 'Africa/Algiers', flag: 'algeria.png'),
@@ -29,13 +29,41 @@ class _LocationState extends State<Location> {
     WorldTime(
         location: 'Winnipeg', url: 'America/Winnipeg', flag: 'canada.png'),
   ];
+
   getTimeHere(index) async {
-    await locations[index].getTime();
-    //print(locations[index].flag);
+    try {
+      await locations[index].getTime();
+      //print(locations[index].flag);
+    } catch (e) {
+      print(e);
+      setState(() {
+        loading = false;
+      });
+
+      loader.dismiss();
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Oops!!"),
+              content: Text("Network Error"),
+              actions: [
+                FlatButton(
+                  child: Text("Close"),
+                  onPressed: () {
+                    Navigator.pop(
+                      context,
+                    );
+                  },
+                )
+              ],
+            );
+          });
+    }
     setState(() {
       loading = false;
     });
-    
+
     loader.dismiss();
     //navigate back to home screen
     Navigator.pop(context, {
@@ -57,7 +85,7 @@ class _LocationState extends State<Location> {
           itemCount: locations.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.fromLTRB(8.0, 6.0, 8.0, 0),
+              padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
               child: Card(
                 child: ListTile(
                   onTap: () async {
@@ -70,7 +98,6 @@ class _LocationState extends State<Location> {
                       setState(() {
                         loader = dialog;
                       });
-                    
                     }
 
                     getTimeHere(index);

@@ -10,6 +10,14 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   String time;
+  String refresh;
+
+  @override
+  void initState() {
+    super.initState();
+    setUp();
+  }
+
   void setUp() async {
     try {
       var world = WorldTime(
@@ -28,6 +36,32 @@ class _LoadingState extends State<Loading> {
         'isDayTime': world.isDayTime,
       });
     } catch (e) {
+      print(e);
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Oops!!"),
+              content: Text("An error occur"),
+              actions: [
+                FlatButton(
+                  child: Text("Retry"),
+                  onPressed: () {
+                    Navigator.pop(
+                      context,
+                      MaterialPageRoute(builder: (context) => Loading()),
+                    );
+                    //Navigator.of(context).pop();
+                    //print(refresh);
+                    /*setState(() {
+                      refresh = refresh == null ? 'no' : 'yes';
+                    });
+                    print(refresh);*/
+                  },
+                )
+              ],
+            );
+          });
       /*if (Platform.isAndroid) {
         AlertDialog(
           title: Text('Ooops!!'),
@@ -39,14 +73,7 @@ class _LoadingState extends State<Loading> {
           content: Text('An error occur, could not find data'),
         );
       }*/
-      print('error $e');
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setUp();
   }
 
   @override
